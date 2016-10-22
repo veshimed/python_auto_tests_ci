@@ -7,4 +7,4 @@ The purpose is:
 
 2. Create and organize test files using best practices
 
-3. Become a "guru" in this subject ^)
+3. Become a "guru" in this subject :)
