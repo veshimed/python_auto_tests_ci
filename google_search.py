@@ -5,38 +5,50 @@ import datetime
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-URL = "https://www.google.com"
-SEARCH = "Love is..."
+URL = 'https://www.google.com'
+SEARCH = 'Love is...'
+SEARCH_FIELD_NAME = "q"#'lst-ib'
+IMAGES_BTN_XPATH = '//*[@id="hdtb-msb"]/div[2]/a'
+TEST_IMAGE_XPATH = '//*[@id="rg_s"]/div[15]/a/img'
 
 
 class GoogleSearchChrome(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.PhantomJS()
-        self.screen_name = (
-            'Screenshots/phantom.GoogleSearch.' + str(datetime.datetime.today()) + '.jpg'
-        ).replace(':', '.')
+        self.screenshot_name = (
+            'phantom.GoogleSearch.' + str(
+                datetime.datetime.today()) + '.jpg'
+        ).replace(':', '.').replace(' ', '-')
 
     def test_search_love_is(self):
         driver = self.driver
         driver.get(URL)
 
         self.assertIn("Google", driver.title)
-        search_field = driver.find_element_by_id("lst-ib")
+        print('Google is loaded')
+        driver.implicitly_wait(10)  # seconds
+
+        search_field = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.NAME, SEARCH_FIELD_NAME))
+        )
+
+        print('Search field is loaded')
+
         search_field.clear()
         search_field.send_keys(SEARCH + Keys.RETURN)
 
-        driver.implicitly_wait(10)  # seconds
-        img = driver.find_element_by_xpath('//*[@id="hdtb-msb"]/div[2]/a').click()
-        driver.implicitly_wait(10)  # seconds
-        driver.find_element_by_xpath('//*[@id="rg_s"]/div[15]/a/img')
-        if ("No result found" in driver.page_source):
-            driver.save_screenshot(self.screen_name)
-            print(self.screen_name)
-            self.fail()
+        self.assertIn(SEARCH, driver.title)
+
+        driver.save_screenshot(self.screenshot_name)
+        print(self.screenshot_name)
 
     def tearDown(self):
         self.driver.quit()
+
 
 if __name__ == "__main__":
     unittest.main()
