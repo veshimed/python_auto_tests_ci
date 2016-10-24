@@ -1,3 +1,5 @@
+"""The test to check google search, just for fun :)"""
+
 import unittest
 import datetime
 
