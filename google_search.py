@@ -21,7 +21,7 @@ class GoogleSearchChrome(unittest.TestCase):
         self.driver = webdriver.PhantomJS()
         self.screenshot_name = (
             'phantom.GoogleSearch.' + str(
-                datetime.datetime.today()) + '.jpg'
+                datetime.datetime.today()) + '.png'
         ).replace(':', '.').replace(' ', '-')
 
     def test_search_love_is(self):
