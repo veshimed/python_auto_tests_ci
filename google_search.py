@@ -12,7 +12,7 @@ SEARCH = "Love is..."
 
 class GoogleSearchChrome(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.phantomjs()
+        self.driver = webdriver.PhantomJS()
         self.screen_name = (
             'Screenshots/phantom.GoogleSearch.' + str(datetime.datetime.today()) + '.jpg'
         ).replace(':', '.')
