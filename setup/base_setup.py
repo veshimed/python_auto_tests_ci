@@ -1,13 +1,13 @@
 """General setup for the tests.
-Supported browsers: Chrome,Firefox, PhantomJS
+Supported browsers: Chrome, Firefox, PhantomJS
 
 """
 
 import json
+import os
+import unittest
 
 from pprint import pprint
-
-import unittest
 
 from selenium import webdriver
 
@@ -15,10 +15,14 @@ from selenium import webdriver
 class Base(unittest.TestCase):
     """The base class to setup the test"""
 
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    RES_DIR = os.path.join(BASE_DIR, 'resources')
+    SUTUP_PATH = '{}/setup.json'.format(RES_DIR)
+
     def setUp(self):
         """Parse setup.json file to get required URL and browser"""
 
-        with open('setup.json') as data_file:
+        with open(self.SUTUP_PATH) as data_file:
             data = json.load(data_file)
         pprint(data)
 
@@ -28,12 +32,12 @@ class Base(unittest.TestCase):
             self.driver = webdriver.Chrome()
         elif browser == 'firefox':
             self.driver = webdriver.Firefox()
-        elif browser == 'PhantomJS':
+        elif browser == 'phantomjs':
             self.driver = webdriver.PhantomJS()
         else:
             raise ValueError(
-                '{0:s} is not a supported browser. Supported browsers: Chrome,'
-                'Firefox, PhantomJS'.format(browser)
+                '{0:s} is not a supported browser. Supported browsers: '
+                'Chrome, Firefox, PhantomJS'.format(browser)
             )
 
         self.driver.get(self.base_url)
