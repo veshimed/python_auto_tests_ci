@@ -39,4 +39,5 @@ class Base(unittest.TestCase):
         self.driver.get(self.base_url)
 
     def tearDown(self):
+        """Close browser after test"""
         self.driver.quit()
