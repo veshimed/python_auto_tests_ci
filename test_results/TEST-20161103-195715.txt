@@ -1,0 +1,5 @@
+2016-11-03 19:57:16,700 - test - INFO - Setup data:
+URL: http://rozetka.com.ua/
+Browser: chrome
+2016-11-03 19:57:16,700 - test - INFO - Load main page
+2016-11-03 19:57:36,726 - test - INFO - Close browser
