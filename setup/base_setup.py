@@ -3,25 +3,25 @@ Supported browsers: Chrome, Firefox, PhantomJS
 
 """
 import os
-import unittest
 
 from selenium import webdriver
 
 from utils.app_logger import get_logger
 from utils.json_manager import get_setup_data
 
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RESULTS_DIR = os.path.join(BASE_DIR, 'test_results')
 LOG_PATH = '{}/test_res.txt'.format(RESULTS_DIR)
 
 
-class Base(unittest.TestCase):
+class Base():
     """The base class to setup the test"""
 
-    def setUp(self):
-        """Setup required URL and browser"""
+    log = get_logger('test')
 
-        self.log = get_logger('test')
+    def setup(self):
+        """Setup required URL and browser"""
 
         setup_data = get_setup_data()
 
@@ -49,7 +49,7 @@ class Base(unittest.TestCase):
         self.log.info('Load main page')
         self.driver.get(self.base_url)
 
-    def tearDown(self):
+    def teardown(self):
         """Close browser after test"""
         self.log.info('Close browser')
         self.driver.quit()

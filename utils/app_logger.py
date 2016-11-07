@@ -1,15 +1,14 @@
-import os
-import time
 import logging
+import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RESULTS_DIR = os.path.join(BASE_DIR, 'test_results')
 
 
-def _generate_log_file_name()-> str:
-    timestr = time.strftime("%Y%m%d-%H%M%S")
-    filename = '{0}/TEST-{1}.txt'.format(RESULTS_DIR, timestr)
-    return filename
+# def _generate_log_file_name()-> str:
+#     timestr = time.strftime("%Y%m%d-%H%M%S")
+#     filename = '{0}/TEST-{1}.txt'.format(RESULTS_DIR, timestr)
+#     return filename
 
 
 def get_logger(name: str)-> logging.Logger:
@@ -23,8 +22,6 @@ def get_logger(name: str)-> logging.Logger:
 
     """
 
-    filename = _generate_log_file_name()
-
     # create logger
     logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)
@@ -33,12 +30,6 @@ def get_logger(name: str)-> logging.Logger:
     formatter = logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     )
-
-    file_handler = logging.FileHandler(filename)
-    file_handler.setFormatter(formatter)
-
-    # add file_handler to logger
-    logger.addHandler(file_handler)
 
     # create console handler and set level to debug
     console_handler = logging.StreamHandler()
@@ -49,5 +40,13 @@ def get_logger(name: str)-> logging.Logger:
 
     # add console_handler to logger
     logger.addHandler(console_handler)
+
+    # filename = _generate_log_file_name()
+    #
+    # file_handler = logging.FileHandler(filename)
+    # file_handler.setFormatter(formatter)
+    #
+    # # add file_handler to logger
+    # logger.addHandler(file_handler)
 
     return logger
