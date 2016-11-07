@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><testsuite errors="0" failures="1" name="pytest" skips="0" tests="2" time="9.269"><testcase classname="tests.simple_test.TestSimple" file="tests/simple_test.py" line="9" name="test_setup_positive" time="4.730362176895142"></testcase><testcase classname="tests.simple_test.TestSimple" file="tests/simple_test.py" line="17" name="test_setup_negative" time="4.458956241607666"><failure message="AssertionError: ROZETKA not in title: Интернет-магазин ROZETKA™: фототехника, видеотехника, аудиотехника, компьютеры и компьютерные комплектующие
+assert (&apos;ROZETKA&apos; + &apos;-negative_test&apos;) in &apos;Интернет-магазин ROZETKA™: фототехника, видеотехника, аудиотехника, компьютеры и компьютерные комплектующие&apos;">self = &lt;tests.simple_test.TestSimple object at 0x7fc1c27dc048&gt;
+
+    def test_setup_negative(self):
+        title = MainPage().MAIN_PAGE_TITE
+    
+        found_title = self.driver.title
+&gt;       assert (title + &apos;-negative_test&apos;) in found_title,&apos;{0} not in title: {1}&apos;.format(title, found_title)
+E       AssertionError: ROZETKA not in title: Интернет-магазин ROZETKA™: фототехника, видеотехника, аудиотехника, компьютеры и компьютерные комплектующие
+E       assert (&apos;ROZETKA&apos; + &apos;-negative_test&apos;) in &apos;Интернет-магазин ROZETKA™: фототехника, видеотехника, аудиотехника, компьютеры и компьютерные комплектующие&apos;
+
+../tests/simple_test.py:22: AssertionError</failure></testcase></testsuite>
