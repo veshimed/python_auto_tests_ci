@@ -2,17 +2,11 @@
 Supported browsers: Chrome, Firefox, PhantomJS
 
 """
-import os
 
 from selenium import webdriver
 
 from utils.app_logger import get_logger
 from utils.json_manager import get_setup_data
-
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RESULTS_DIR = os.path.join(BASE_DIR, 'test_results')
-LOG_PATH = '{}/test_res.txt'.format(RESULTS_DIR)
 
 
 class Base():
